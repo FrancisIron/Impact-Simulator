@@ -74,14 +74,14 @@ public class ControllerVer2 {
         error.setVisible(false);
         if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
             double frames = andrea.calcular(baseCarga,expCarga,baseMasa,expMasa,campoElectrico,distancia,vel,time,difPotencial,difEPotencial);
-            animationPlay((1 / frames));
+            animationPlay((frames));
         } else {
             error.setVisible(true);
         }
     }
 
     public void animationPlay(double frames) {
-        transition.setDuration(Duration.millis(frames));
+        transition.setDuration(Duration.seconds(frames));
         transition.setNode(particula);
         transition.setByX(194);
         transition.play();

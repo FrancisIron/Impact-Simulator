@@ -2,3 +2,7 @@
 .idea/*
 out/*
 
+/nbproject/*
+/build/
+build.xml
+manifest.mf
