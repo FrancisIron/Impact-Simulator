@@ -1,8 +1,5 @@
 package tareaFisica;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -64,33 +61,17 @@ public class ControllerVer2 {
         animationStop();
         particula.setTranslateX(0);
         error.setVisible(false);
-        if (validarInput(baseMasa, expMasa) && validarInput(baseCarga, expCarga) && validarNumero(potencial) && validarNumero(campoElectrico) && validarNumero(distancia)) {
-            double charge, mass, auxBase, acc, resultTime, speed, EPot, difPot;
-            int auxExp;
-            auxBase = Double.parseDouble(baseCarga.getText());
-            auxExp = Integer.parseInt(expCarga.getText());
-            charge = Double.parseDouble(createDouble(auxBase, auxExp));
-            auxBase = Double.parseDouble(baseMasa.getText());
-            auxExp = Integer.parseInt(expMasa.getText());
-            mass = Double.parseDouble(createDouble(auxBase, auxExp));
-            acc = calculateAcceleration(charge, mass, Double.parseDouble(campoElectrico.getText()));
-            resultTime = calculateTime(acc, Double.parseDouble(distancia.getText()));
-            speed = calculateSpeed(acc, resultTime);
-            EPot = calculateEnergyChange(mass, speed);
-            difPot = calculateDifPoten(charge, EPot);
-            vel.setText("" + speed);
-            time.setText("" + resultTime);
-            difPotencial.setText("" + difPot);
-            difEPotencial.setText("" + EPot);
-            animationPlay((1 / speed));
+        if (validarPotencia(baseMasa, expMasa) && validarPotencia(baseCarga, expCarga) && validarNumero(potencial) && validarNumero(campoElectrico) && validarNumero(distancia)) {
+            double frames = calcular();
+            System.out.println("frames inicial "+frames);
+            animationPlay((1 / frames));
         } else {
             error.setVisible(true);
-
         }
-
     }
 
     public void animationPlay(double frames) {
+        System.out.println("frames anim "+frames);
         transition.setDuration(Duration.millis(frames));
         transition.setNode(particula);
         transition.setByX(194);
@@ -123,6 +104,28 @@ public class ControllerVer2 {
     }
 
     /* Metodos para calcular */
+
+    public double calcular (){
+        double charge, mass, auxBase, acc, resultTime, speed, EPot, difPot;
+        int auxExp;
+        auxBase = Double.parseDouble(baseCarga.getText());
+        auxExp = Integer.parseInt(expCarga.getText());
+        charge = Double.parseDouble(createDouble(auxBase, auxExp));
+        auxBase = Double.parseDouble(baseMasa.getText());
+        auxExp = Integer.parseInt(expMasa.getText());
+        mass = Double.parseDouble(createDouble(auxBase, auxExp));
+        acc = calculateAcceleration(charge, mass, Double.parseDouble(campoElectrico.getText()));
+        resultTime = calculateTime(acc, Double.parseDouble(distancia.getText()));
+        speed = calculateSpeed(acc, resultTime);
+        EPot = calculateEnergyChange(mass, speed);
+        difPot = calculateDifPoten(charge, EPot);
+        vel.setText("" + speed);
+        time.setText("" + resultTime);
+        difPotencial.setText("" + difPot);
+        difEPotencial.setText("" + EPot);
+        //valor que retorna para la animacion
+        return resultTime;
+    }
 
     public double calculateAcceleration(double charge, double mass, double field) {
         //Ax * m = F
@@ -165,7 +168,7 @@ public class ControllerVer2 {
         return true;
     }
 
-    public boolean validarInput(TextField inputBase, TextField inputExp) {
+    public boolean validarPotencia(TextField inputBase, TextField inputExp) {
         String decimal = "" + inputBase.getText();//llamar al input.getText()
         if (decimal == null || decimal.length() == 0) {
             return false;
