@@ -1,4 +1,4 @@
-package tareaFisica;
+package controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
