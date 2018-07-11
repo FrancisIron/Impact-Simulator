@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class Controller {
+public class ControllerOld {
     private Timeline timeline = new Timeline();
 
     @FXML
