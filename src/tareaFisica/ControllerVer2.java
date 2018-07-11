@@ -11,7 +11,9 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import static java.lang.Math.sqrt;
-
+/*
+/ Hola Diego :D
+ */
 public class ControllerVer2 {
     TranslateTransition transition = new TranslateTransition();
 
