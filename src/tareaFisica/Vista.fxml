@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tareaFisica.Controller">
+   <columnConstraints>
+      <ColumnConstraints maxWidth="93.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="128.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="198.0" minWidth="0.0" percentWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="346.0" minWidth="0.0" prefWidth="346.0" />
+      <ColumnConstraints maxWidth="123.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="62.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="60.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+   </rowConstraints>
+   <children>
+      <Line fx:id="line1" endY="100.0" layoutX="60.0" layoutY="111.0" startY="-100.0" GridPane.columnIndex="1" />
+      <Text fx:id="textIzquierda" boundsType="VISUAL" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+++++++++++++++++++++" textAlignment="JUSTIFY" textOrigin="BOTTOM" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Text>
+      <Line fx:id="line" endY="100.0" startY="-100.0" GridPane.columnIndex="3" />
+      <Line fx:id="line2" endY="100.0" layoutX="291.0" layoutY="293.0" startY="-100.0" GridPane.columnIndex="4" />
+      <Line fx:id="line21" endY="100.0" layoutX="347.0" layoutY="293.0" startY="-100.0" GridPane.columnIndex="6" />
+      <Text fx:id="textDerecha" boundsType="VISUAL" layoutX="72.0" layoutY="308.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |" textAlignment="JUSTIFY" textOrigin="BOTTOM" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+      <Circle fx:id="particula" fill="DODGERBLUE" radius="14.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Circle>
+   </children>
+</GridPane>
