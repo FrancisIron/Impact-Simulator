@@ -11,9 +11,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import static java.lang.Math.sqrt;
-/*
-/ Hola Diego :D
- */
+
 public class ControllerVer2 {
     TranslateTransition transition = new TranslateTransition();
 
@@ -66,25 +64,25 @@ public class ControllerVer2 {
         animationStop();
         particula.setTranslateX(0);
         error.setVisible(false);
-        if (validarInput(baseMasa,expMasa)&& validarInput(baseCarga,expCarga)){
+        if (validarInput(baseMasa, expMasa) && validarInput(baseCarga, expCarga) && validarNumero(potencial) && validarNumero(campoElectrico) && validarNumero(distancia)) {
             double charge, mass, auxBase, acc, resultTime, speed, EPot, difPot;
             int auxExp;
             auxBase = Double.parseDouble(baseCarga.getText());
             auxExp = Integer.parseInt(expCarga.getText());
-            charge = Double.parseDouble(createDouble(auxBase,auxExp));
+            charge = Double.parseDouble(createDouble(auxBase, auxExp));
             auxBase = Double.parseDouble(baseMasa.getText());
             auxExp = Integer.parseInt(expMasa.getText());
-            mass = Double.parseDouble(createDouble(auxBase,auxExp));
-            acc = calculateAcceleration(charge,mass,Double.parseDouble(campoElectrico.getText()));
+            mass = Double.parseDouble(createDouble(auxBase, auxExp));
+            acc = calculateAcceleration(charge, mass, Double.parseDouble(campoElectrico.getText()));
             resultTime = calculateTime(acc, Double.parseDouble(distancia.getText()));
-            speed = calculateSpeed(acc,resultTime);
-            EPot = calculateEnergyChange(mass,speed);
+            speed = calculateSpeed(acc, resultTime);
+            EPot = calculateEnergyChange(mass, speed);
             difPot = calculateDifPoten(charge, EPot);
-            vel.setText(""+speed);
-            time.setText(""+resultTime);
-            difPotencial.setText(""+difPot);
-            difEPotencial.setText(""+EPot);
-            animationPlay((1/resultTime));
+            vel.setText("" + speed);
+            time.setText("" + resultTime);
+            difPotencial.setText("" + difPot);
+            difEPotencial.setText("" + EPot);
+            animationPlay((1 / speed));
         } else {
             error.setVisible(true);
 
@@ -92,14 +90,14 @@ public class ControllerVer2 {
 
     }
 
-    public void animationPlay(double frames){
+    public void animationPlay(double frames) {
         transition.setDuration(Duration.millis(frames));
         transition.setNode(particula);
         transition.setByX(194);
         transition.play();
     }
 
-    public void animationStop(){
+    public void animationStop() {
         transition.stop();
     }
 
@@ -153,18 +151,39 @@ public class ControllerVer2 {
         return -((mass * speed) / 2);
     }
 
-    public boolean validarInput(TextField inputBase, TextField inputExp) {
-        String decimal = "" + inputBase.getText();//llamar al input.getText()
-        if(decimal == null || decimal.length() == 0){
+    /*Metodos de validacion de input*/
+
+    public boolean validarNumero(TextField input) {
+        try {
+            String str = input.getText();
+            double num = Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
             return false;
         }
-        int exponencial = Integer.parseInt(inputExp.getText());//llamer al expo.getText()
+        return true;
+    }
+
+    public boolean validarInput(TextField inputBase, TextField inputExp) {
+        String decimal = "" + inputBase.getText();//llamar al input.getText()
+        if (decimal == null || decimal.length() == 0) {
+            return false;
+        }
+        int exponencial;
+        try {
+            exponencial= Integer.parseInt(inputExp.getText());//llamer al expo.getText()
+        } catch (NumberFormatException e){
+            return false;
+        } catch (NullPointerException e){
+            return false;
+        }
         if (decimal.contains(".")) {
             if (decimal.split("\\.")[1].length() > 2) {
                 exponencial -= (decimal.split("\\.")[1].length() - 2);
-                decimal = decimal.split("\\.")[0] +"."+ decimal.split("\\.")[1].substring(0, 2);
+                decimal = decimal.split("\\.")[0] + "." + decimal.split("\\.")[1].substring(0, 2);
                 inputBase.setText(decimal);
-                inputExp.setText(""+exponencial);
+                inputExp.setText("" + exponencial);
             }
             return true;
         } else {
