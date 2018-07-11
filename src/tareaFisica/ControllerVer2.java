@@ -88,7 +88,6 @@ public class ControllerVer2 {
 
         }
 
-
     }
 
     public void animationPlay(double frames){
