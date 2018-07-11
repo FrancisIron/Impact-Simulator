@@ -25,12 +25,11 @@ public class Corrector {
     }
 
     /*Validacion de entradas*/
-
     public boolean validarNumero(TextField input) {
         try {
-            String str = input.getText();
+            String str = input.getText().trim();
             str = str.replaceAll(",", "");
-            double num = Double.parseDouble(str);
+            Double.parseDouble(str);
         } catch (NumberFormatException | NullPointerException e) {
             return false;
         }
@@ -38,7 +37,7 @@ public class Corrector {
     }
 
     public boolean validarPotencia(TextField inputBase, TextField inputExp) {
-        String decimal = "" + inputBase.getText();
+        String decimal = "" + inputBase.getText().trim();
         if (decimal == null || decimal.length() == 0) {
             return false;
         }
@@ -50,15 +49,15 @@ public class Corrector {
         }
         decimal = decimal.replaceAll(",", "");
         if (decimal.contains(".")) {
-            if (decimal.split("\\.")[1].length() > 2) {
+            if (decimal.split("\\.").length == 1) {
+                decimal += "0";
+            } else if (decimal.split("\\.")[1].length() > 2) {
                 exponencial -= (decimal.split("\\.")[1].length() - 2);
                 decimal = decimal.split("\\.")[0] + "." + decimal.split("\\.")[1].substring(0, 2);
-                inputBase.setText(decimal);
-                inputExp.setText("" + exponencial);
             }
-            return true;
-        } else {
-            return false;
         }
+        inputBase.setText(decimal);
+        inputExp.setText("" + exponencial);
+        return true;
     }
 }

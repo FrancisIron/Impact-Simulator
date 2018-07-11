@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.KeyListener;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,8 +11,11 @@ import model.Calculista;
 import model.Corrector;
 
 import static java.lang.Math.sqrt;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class ControllerVer2 {
+
     TranslateTransition transition = new TranslateTransition();
 
     //FXID animacion
@@ -62,10 +66,15 @@ public class ControllerVer2 {
     private Corrector juanito;
 
     /* Metodos main de simulacion */
-
     public ControllerVer2() {
         this.andrea = new Calculista();
         this.juanito = new Corrector();
+    }
+
+    public void onEnterPressed(KeyEvent key) {
+        if (key.getCode() == KeyCode.ENTER) {
+            simular();
+        }
     }
 
     public void simular() {
@@ -73,7 +82,7 @@ public class ControllerVer2 {
         particula.setTranslateX(0);
         error.setVisible(false);
         if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
-            double frames = andrea.calcular(baseCarga,expCarga,baseMasa,expMasa,campoElectrico,distancia,vel,time,difPotencial,difEPotencial);
+            double frames = andrea.calcular(baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
             animationPlay((frames));
         } else {
             error.setVisible(true);
@@ -90,6 +99,5 @@ public class ControllerVer2 {
     public void animationStop() {
         transition.stop();
     }
-
 
 }
