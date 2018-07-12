@@ -1,6 +1,7 @@
 
 .idea/*
 out/*
+Impact-Simulator.iml
 
 /nbproject/*
 /build/

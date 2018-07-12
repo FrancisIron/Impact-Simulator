@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerVer2">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerVer2">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="0.0" prefWidth="13.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="353.0" />
@@ -45,10 +49,21 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Simulación" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" onAction="#simular" prefHeight="91.0" prefWidth="196.0" text="Simular" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#simular" prefHeight="91.0" prefWidth="140.0" text="Simular" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <font>
-            <Font size="34.0" />
-         </font></Button>
+            <Font size="28.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="45.0" />
+         </GridPane.margin></Button>
+      <Button mnemonicParsing="false" onAction="#actionCalcular" prefHeight="91.0" prefWidth="140.0" text="Calcular" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="55.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="0.0" prefWidth="18.0" />

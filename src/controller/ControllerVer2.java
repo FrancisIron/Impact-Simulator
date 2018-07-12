@@ -1,18 +1,15 @@
 package controller;
 
-import java.awt.event.KeyListener;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.Calculista;
 import model.Corrector;
-
-import static java.lang.Math.sqrt;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 public class ControllerVer2 {
 
@@ -77,7 +74,18 @@ public class ControllerVer2 {
         }
     }
 
-    public void simular() {
+    public void actionCalcular(){
+        animationStop();
+        particula.setTranslateX(0);
+        error.setVisible(false);
+        if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
+            double result = andrea.calcular(baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
+        } else {
+            error.setVisible(true);
+        }
+    }
+
+    public void simular(){
         animationStop();
         particula.setTranslateX(0);
         error.setVisible(false);
