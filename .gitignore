@@ -7,3 +7,4 @@ Impact-Simulator.iml
 /build/
 build.xml
 manifest.mf
+/dist/
