@@ -5,30 +5,36 @@ import javafx.scene.control.TextField;
 public class Corrector {
 
     /*De texto*/
-    public String createDouble(double shortdeciaml, int exp) {
-        String num;
-        if (exp < 0) {
-            num = "0.";
-            for (int i = 0; i > exp + 1; i--) {
-                num += "0";
-            }
-            num += ("" + shortdeciaml).replaceAll("\\.", "");
+    public double createDouble(double shortdecimal, int exp) {
+        double calc = shortdecimal * Math.pow(10, exp);
+        return calc;
+    }
+
+    public String createString(double num) {
+        String n = "" + num;
+        String out = "";
+        if (n.contains("E")) {
+            out = n.substring(0, 3) + "x10^" + n.split("E")[1];
         } else {
-            num = ("" + shortdeciaml).split("\\.")[0];
-            num += ("" + shortdeciaml).split("\\.")[1];
-            int decimals = ("" + shortdeciaml).split("\\.")[1].length();
-            for (int i = 0; i < exp - decimals; i++) {
-                num += "" + 0;
+            if (n.contains(".")) {
+                for (int i = 0; i < n.length(); i++) {
+                    if (n.charAt(i) == '.') {
+                        break;
+                    }
+                    out += n.charAt(i);
+                }
+            } else {
+                return n;
             }
         }
-        return num;
+        return out;
     }
 
     /*Validacion de entradas*/
     public boolean validarNumero(TextField input) {
         try {
             String str = input.getText().trim();
-            str = str.replaceAll(",", "");
+            str = str.replaceAll(",", ".");
             Double.parseDouble(str);
         } catch (NumberFormatException | NullPointerException e) {
             return false;
@@ -47,7 +53,7 @@ public class Corrector {
         } catch (NumberFormatException | NullPointerException e) {
             return false;
         }
-        decimal = decimal.replaceAll(",", "");
+        decimal = decimal.replaceAll(",", ".");
         if (decimal.contains(".")) {
             if (decimal.split("\\.").length == 1) {
                 decimal += "0";

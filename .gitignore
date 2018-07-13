@@ -2,7 +2,7 @@
 .idea/*
 out/*
 Impact-Simulator.iml
-
+/dist
 /nbproject/*
 /build/
 build.xml
