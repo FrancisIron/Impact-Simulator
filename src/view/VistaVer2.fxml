@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -42,7 +43,12 @@
             <Line endY="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ + + + + + + + + + + + + + +" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Line endY="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Circle fx:id="particula" fill="DODGERBLUE" radius="15.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <StackPane fx:id="stackParticula" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Circle fx:id="particula" fill="DODGERBLUE" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Text fx:id="textCircle" strokeType="OUTSIDE" strokeWidth="0.0" text="+" />
+               </children>
+            </StackPane>
             <Line endY="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <Text rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |" textAlignment="JUSTIFY" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Line endY="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />

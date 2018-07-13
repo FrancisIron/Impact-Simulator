@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.Calculista;
@@ -13,11 +13,11 @@ import model.Corrector;
 
 public class ControllerVer2 {
 
-    TranslateTransition transition = new TranslateTransition();
+    //FXID y atributos de animacion
+    private TranslateTransition transition;
 
-    //FXID animacion
     @FXML
-    private Circle particula;
+    private StackPane stackParticula;
 
     //FXID Entradas
     @FXML
@@ -62,10 +62,12 @@ public class ControllerVer2 {
 
     private Corrector juanito;
 
+
     /* Metodos main de simulacion */
     public ControllerVer2() {
         this.andrea = new Calculista();
         this.juanito = new Corrector();
+        this.transition = new TranslateTransition();
     }
 
     public void onEnterPressed(KeyEvent key) {
@@ -76,7 +78,6 @@ public class ControllerVer2 {
 
     public void actionCalcular(){
         animationStop();
-        particula.setTranslateX(0);
         error.setVisible(false);
         if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
             double result = andrea.calcular(baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
@@ -87,7 +88,6 @@ public class ControllerVer2 {
 
     public void simular(){
         animationStop();
-        particula.setTranslateX(0);
         error.setVisible(false);
         if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
             double frames = andrea.calcular(baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
@@ -99,13 +99,14 @@ public class ControllerVer2 {
 
     public void animationPlay(double frames) {
         transition.setDuration(Duration.seconds(frames));
-        transition.setNode(particula);
+        transition.setNode(stackParticula);
         transition.setByX(194);
         transition.play();
     }
 
     public void animationStop() {
         transition.stop();
+        stackParticula.setTranslateX(0);
     }
 
 }
