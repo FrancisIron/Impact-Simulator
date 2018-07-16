@@ -76,29 +76,34 @@ public class ControllerVer2 {
         }
     }
 
-    public void actionCalcular() {
+    public double actionCalcular() {
         animationStop();
         error.setVisible(false);
         if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
             double t = andrea.calcular(potencial, baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
+            return t;
         } else {
             error.setVisible(true);
+            return 0.0;
         }
     }
 
     public void simular() {
         animationStop();
         error.setVisible(false);
-        if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
-            if (Double.parseDouble(baseCarga.getText()) > 0) {
-                double t = andrea.calcular(potencial, baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
+        if (Double.parseDouble(baseCarga.getText()) > 0) {
+            double t = actionCalcular();
+            if (t != 0.0) {
                 String num = "" + t;
-                double frames = Double.parseDouble(num.split("E")[0]) * 10;
+                System.out.println(t);
+                double frames = t * Math.pow(10, -Integer.parseInt(num.split("E")[1]) + 1);
+                System.out.println(frames);
                 animationPlay(frames);
+            } else {
+                error.setVisible(true);
             }
-        } else {
-            error.setVisible(true);
         }
+
     }
 
     public void animationPlay(double frames) {
