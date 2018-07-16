@@ -95,9 +95,7 @@ public class ControllerVer2 {
             double t = actionCalcular();
             if (t != 0.0) {
                 String num = "" + t;
-                System.out.println(t);
                 double frames = t * Math.pow(10, -Integer.parseInt(num.split("E")[1]) + 1);
-                System.out.println(frames);
                 animationPlay(frames);
             } else {
                 error.setVisible(true);
