@@ -93,7 +93,7 @@ public class ControllerVer2 {
                 double t = andrea.calcular(potencial, baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
                 String num = "" + t;
                 double frames = Double.parseDouble(num.split("E")[0]) * 10;
-                System.out.println(frames);
+                animationPlay(frames);
             }
         } else {
             error.setVisible(true);
