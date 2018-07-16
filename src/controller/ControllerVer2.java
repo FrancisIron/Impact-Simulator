@@ -80,6 +80,7 @@ public class ControllerVer2 {
         animationStop();
         error.setVisible(false);
         if (juanito.validarPotencia(baseMasa, expMasa) && juanito.validarPotencia(baseCarga, expCarga) && juanito.validarNumero(potencial) && juanito.validarNumero(campoElectrico) && juanito.validarNumero(distancia)) {
+            double t = andrea.calcular(potencial, baseCarga, expCarga, baseMasa, expMasa, campoElectrico, distancia, vel, time, difPotencial, difEPotencial);
         } else {
             error.setVisible(true);
         }
